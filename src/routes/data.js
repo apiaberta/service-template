@@ -2,7 +2,8 @@
  * data.js — your public data routes
  *
  * Rules:
- * - All routes under /v1/
+ * - Registered under /<service-name> (see app.js). The public URL is
+ *   /v1/<service-name>/..., the gateway strips /v1 before proxying.
  * - Return JSON with consistent envelope: { data, meta }
  * - Support pagination: ?page=1&limit=20
  * - Support ?updated_since=ISO_DATE for polling
@@ -11,7 +12,7 @@
 
 export async function dataRoutes(app) {
 
-  // Example: GET /v1/items
+  // Example: GET /v1/<service-name>/items
   app.get('/items', {
     schema: {
       description: 'List items', // TODO: describe your endpoint
